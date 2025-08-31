@@ -166,6 +166,8 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+vim.o.expandtab = true
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -212,6 +214,9 @@ vim.keymap.set('n', '<C-p>', '<cmd>ToggleTerm direction=float<CR>', { silent = t
 vim.keymap.set('t', '<C-p>', '<cmd>ToggleTerm direction=float<CR>', { silent = true, noremap = true })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('n', '<leader>lf', function()
+  vim.diagnostic.open_float()
+end)
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`

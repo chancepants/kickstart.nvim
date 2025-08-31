@@ -45,16 +45,18 @@ return {
     },
     init = function()
       vim.g.barbar_auto_setup = false
+    end,
+    config = function()
       require('barbar').setup {
         semantic_letters = false,
-        vim.keymap.set('n', '<leader>p', '<Cmd>BufferPick<CR>'),
-        vim.keymap.set('n', '<leader>bd', '<Cmd>BufferClose<CR>'),
         icons = {
           filetype = {
             enabled = false,
           },
         },
       }
+      vim.keymap.set('n', '<leader>p', '<Cmd>BufferPick<CR>')
+      vim.keymap.set('n', '<leader>bd', '<Cmd>BufferClose<CR>')
     end,
     opts = {
       -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
@@ -63,5 +65,8 @@ return {
       -- …etc.
     },
     version = '^1.0.0', -- optional: only update when a new 1.x version is released
+  },
+  {
+    'Hoffs/omnisharp-extended-lsp.nvim',
   },
 }

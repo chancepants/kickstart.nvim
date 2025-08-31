@@ -167,6 +167,8 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 
 vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -591,6 +593,25 @@ require('lazy').setup({
           --  the definition of its *type*, not where it was *defined*.
           map('gt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
 
+          -- Custom omnisharp LSP keymaps using omnisharp-extended
+          -- Check if the current buffer is using omnisharp
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client and client.name == 'omnisharp' then
+            -- Override default LSP keymaps with omnisharp-extended versions
+            map('gr', function()
+              require('omnisharp_extended').telescope_lsp_references()
+            end, '[G]oto [R]eferences')
+            map('gd', function()
+              require('omnisharp_extended').telescope_lsp_definition()
+            end, '[G]oto [D]efinition')
+            map('gt', function()
+              require('omnisharp_extended').telescope_lsp_type_definition()
+            end, 'Type [D]efinition')
+            map('gi', function()
+              require('omnisharp_extended').telescope_lsp_implementation()
+            end, '[G]oto [I]mplementation')
+          end
+
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
           ---@param method vim.lsp.protocol.Method
@@ -691,8 +712,6 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -703,8 +722,8 @@ require('lazy').setup({
         ts_ls = {},
         eslint = {},
         pyright = {},
-        --
-
+        omnisharp = {},
+        gopls = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -732,8 +751,7 @@ require('lazy').setup({
       -- `mason` had to be setup earlier: to configure its options see the
       -- `dependencies` table for `nvim-lspconfig` above.
       --
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
+      -- You can add other tools here that you want Mason to install for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code

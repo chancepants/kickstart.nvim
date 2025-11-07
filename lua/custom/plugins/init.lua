@@ -32,7 +32,7 @@ return {
           height = function()
             return math.floor(vim.o.lines * 0.6)
           end,
-          winblend = 3,
+          winblend = 0,
         },
       }
     end,
@@ -68,5 +68,8 @@ return {
   },
   {
     'Hoffs/omnisharp-extended-lsp.nvim',
+  },
+  {
+    'tpope/vim-fugitive',
   },
 }

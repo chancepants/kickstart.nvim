@@ -209,9 +209,12 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 --
+--
 vim.keymap.set('n', '<leader>lg', function()
   Snacks.lazygit.open()
 end)
+vim.keymap.set('n', '<leader>tn', '<cmd>TermNew<CR>', { desc = '[T]erminal [N]ew' })
+vim.keymap.set('n', '<leader>ft', '<cmd>TermSelect<CR>', { desc = '[F]ind [T]erm' })
 vim.keymap.set('n', '<C-p>', '<cmd>ToggleTerm direction=float<CR>', { silent = true, noremap = true })
 vim.keymap.set('t', '<C-p>', '<cmd>ToggleTerm direction=float<CR>', { silent = true, noremap = true })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")

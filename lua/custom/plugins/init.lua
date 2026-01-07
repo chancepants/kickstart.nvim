@@ -57,6 +57,7 @@ return {
       }
       vim.keymap.set('n', '<leader>p', '<Cmd>BufferPick<CR>')
       vim.keymap.set('n', '<leader>bd', '<Cmd>BufferClose<CR>')
+      vim.keymap.set('n', '<leader>bav', '<Cmd>BufferCloseAllButVisible<CR>', { desc = 'Close all non-visible buffers' })
     end,
     opts = {
       -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:

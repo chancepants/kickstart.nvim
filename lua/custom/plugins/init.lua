@@ -55,7 +55,7 @@ return {
           },
         },
       }
-      vim.keymap.set('n', '<leader>p', '<Cmd>BufferPick<CR>')
+      vim.keymap.set('n', '<leader>bp', '<Cmd>BufferPick<CR>')
       vim.keymap.set('n', '<leader>bd', '<Cmd>BufferClose<CR>')
       vim.keymap.set('n', '<leader>bav', '<Cmd>BufferCloseAllButVisible<CR>', { desc = 'Close all non-visible buffers' })
     end,
